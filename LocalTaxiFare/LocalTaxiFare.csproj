@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{23BF57C4-7449-4F1B-97F5-F8FDBB40249E}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LocalTaxiFare</RootNamespace>
+    <AssemblyName>LocalTaxiFare</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HotelController.cs" />
+    <Compile Include="Controllers\TermsController.cs" />
+    <Compile Include="ICreateLocations.cs" />
+    <Compile Include="ICreateResultViewModels.cs" />
+    <Compile Include="Controllers\ResultsController.cs" />
+    <Compile Include="Controllers\TaxiController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="LocationFactory.cs" />
+    <Compile Include="Models\ResultsViewModel.cs" />
+    <Compile Include="Models\TaxisViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StructureMap\Bootstrapper.cs" />
+    <Compile Include="StructureMap\ControllerFactory.cs" />
+    <Compile Include="TaxiViewModelFactory.cs" />
+    <Compile Include="WhoIsTheWinner.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\css\add2home.css" />
+    <Content Include="assets\css\bootstrap-overide.css" />
+    <Content Include="assets\css\bootstrap-responsive.css" />
+    <Content Include="assets\css\bootstrap.css" />
+    <Content Include="assets\css\searchresults.css" />
+    <Content Include="assets\css\style-3.css" />
+    <Content Include="assets\css\style-2.css" />
+    <Content Include="assets\css\style.css" />
+    <Content Include="assets\img\areas\searchresults\128px-faces.png" />
+    <Content Include="assets\img\areas\searchresults\32px-faces.png" />
+    <Content Include="assets\img\areas\searchresults\64px-faces.png" />
+    <Content Include="assets\img\areas\searchresults\close-filter.png" />
+    <Content Include="assets\img\areas\searchresults\m-sort-down-arrow.png" />
+    <Content Include="assets\img\areas\searchresults\map-pins.png" />
+    <Content Include="assets\img\areas\searchresults\no-rooms-faces.png" />
+    <Content Include="assets\img\areas\searchresults\search-icons-small.png" />
+    <Content Include="assets\img\areas\searchresults\sort-arrows.png" />
+    <Content Include="assets\img\areas\searchresults\sort-header-border.png" />
+    <Content Include="assets\img\areas\searchresults\SR-button-small.png" />
+    <Content Include="assets\img\areas\searchresults\star-small.png" />
+    <Content Include="assets\img\arrow-down.png" />
+    <Content Include="assets\img\bubbles-hotel-vs-taxi.png" />
+    <Content Include="assets\img\button-arrow.png" />
+    <Content Include="assets\img\circle-1.jpg" />
+    <Content Include="assets\img\circle-1.png" />
+    <Content Include="assets\img\circle-2.jpg" />
+    <Content Include="assets\img\circle-2.png" />
+    <Content Include="assets\img\circle-3.png" />
+    <Content Include="assets\img\desktop-about.png" />
+    <Content Include="assets\img\draw-wins-small.gif" />
+    <Content Include="assets\img\draw-wins.gif" />
+    <Content Include="assets\img\fight-big.gif" />
+    <Content Include="assets\img\fight-button-text.png" />
+    <Content Include="assets\img\fight-button.jpg" />
+    <Content Include="assets\img\fight-button.png" />
+    <Content Include="assets\img\fight-small.gif" />
+    <Content Include="assets\img\fighting.gif" />
+    <Content Include="assets\img\glyphicons-halflings-white.png" />
+    <Content Include="assets\img\glyphicons-halflings.png" />
+    <Content Include="assets\img\header-gradient.jpg" />
+    <Content Include="assets\img\hotel-home-image.png" />
+    <Content Include="assets\img\hotel-icon.png" />
+    <Content Include="assets\img\hotel-vs-taxi-bigger-logo.png" />
+    <Content Include="assets\img\hotel-wins-icon.png" />
+    <Content Include="assets\img\hotel-wins-small.gif" />
+    <Content Include="assets\img\hotel-wins.gif" />
+    <Content Include="assets\img\icon-app-v2.png" />
+    <Content Include="assets\img\icon-app.png" />
+    <Content Include="assets\img\icons-hotel-and-taxi.png" />
+    <Content Include="assets\img\lightbulb-home-image.png" />
+    <Content Include="assets\img\logo.png" />
+    <Content Include="assets\img\mobile-about.png" />
+    <Content Include="assets\img\people\abi.png" />
+    <Content Include="assets\img\people\adam.png" />
+    <Content Include="assets\img\people\alex.png" />
+    <Content Include="assets\img\people\andy.png" />
+    <Content Include="assets\img\people\ella.png" />
+    <Content Include="assets\img\people\gemma.png" />
+    <Content Include="assets\img\people\jane.png" />
+    <Content Include="assets\img\people\martin.png" />
+    <Content Include="assets\img\people\pete.png" />
+    <Content Include="assets\img\people\richard.png" />
+    <Content Include="assets\img\people\rob.png" />
+    <Content Include="assets\img\people\sam.png" />
+    <Content Include="assets\img\person-thinking.jpg" />
+    <Content Include="assets\img\powered-by-google-on-non-white.png" />
+    <Content Include="assets\img\search-arrow.png" />
+    <Content Include="assets\img\search-icon.png" />
+    <Content Include="assets\img\search.png" />
+    <Content Include="assets\img\speechbubble-arrow.png" />
+    <Content Include="assets\img\startscreen.png" />
+    <Content Include="assets\img\tablet-about.png" />
+    <Content Include="assets\img\taxi-home-image.png" />
+    <Content Include="assets\img\taxi-icon.png" />
+    <Content Include="assets\img\taxi-wins-icon.png" />
+    <Content Include="assets\img\taxi-wins-small.gif" />
+    <Content Include="assets\img\taxi-wins.gif" />
+    <Content Include="assets\img\text-logo-mobile.png" />
+    <Content Include="assets\img\text-logo-web.png" />
+    <Content Include="assets\js\add2home.js" />
+    <Content Include="assets\js\autocomplete.js" />
+    <Content Include="assets\js\bootstrap.js" />
+    <Content Include="assets\js\bootstrap.min.js" />
+    <Content Include="assets\js\searchForm.js" />
+    <Content Include="assets\js\fight.js" />
+    <Content Include="assets\js\location.js" />
+    <Content Include="assets\js\jquery-1.9.1.js" />
+    <Content Include="assets\js\jquery-1.9.1.min.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Results\Fight.cshtml" />
+    <Content Include="Views\Hotel\Index.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Results\Error.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Taxi\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Results\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Configuration\Configuration.csproj">
+      <Project>{BCB5B7E9-DE32-4495-AEA1-0CC2061D3340}</Project>
+      <Name>Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Geography\Geography.csproj">
+      <Project>{6BA51F12-00AB-4F55-8885-F2AFF731A90C}</Project>
+      <Name>Geography</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hotel\Results.csproj">
+      <Project>{762c86a6-c829-423e-a196-301252ce81a0}</Project>
+      <Name>Results</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JourneyCalculator\JourneyCalculator.csproj">
+      <Project>{4a92eb6d-6ba5-41c2-8e21-699da5223740}</Project>
+      <Name>JourneyCalculator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LateRoomsScraper\LateRoomsScraper.csproj">
+      <Project>{2D8548AD-8581-49DA-9A0B-EF3A4E3E1A7A}</Project>
+      <Name>LateRoomsScraper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaxiApi\TaxiApi.csproj">
+      <Project>{D89796E5-3B53-4A9C-B93B-8ABEAEAC31F7}</Project>
+      <Name>TaxiApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaxiFirmDetails\TaxiFirmDetails.csproj">
+      <Project>{545E84DD-A60B-47FA-A970-B3BD98FAD485}</Project>
+      <Name>TaxiFirmDetails</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebClientWrapper\WebResponse.csproj">
+      <Project>{DC27CAE4-0979-44FF-B297-44D10094C508}</Project>
+      <Name>WebResponse</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Terms\Index.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:56422/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

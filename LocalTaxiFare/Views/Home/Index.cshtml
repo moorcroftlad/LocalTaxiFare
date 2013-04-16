@@ -1,0 +1,70 @@
+﻿<div class="hero-unit">
+    
+    <form class="form-horizontal" method="GET" action="results">
+        <div class="row">
+            <div class="span5">
+                <div class="control-group">
+                    <div class="search-box-holder s-on s-on-change">
+                        <input type="text" disabled="disabled" id="from" placeholder="Use current location" class="input-block-level" name="From">
+                        <button id="change-location" type="button" value="change">Change</button>
+                        <div id="find-my-loc"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="span5">
+                <div class="control-group">
+                    <input type="text" id="to" placeholder="To (postcode, street, town etc.)" class="input-block-level" name="To">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span5">
+                <div class="control-group">
+                    <div class="btn-holder">
+                        <button type="submit" class="btn-fight" id="fight-button"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="fromlatlong" name="fromlatlong"/>
+        <input type="hidden" id="tolatlong" name="tolatlong"/>
+    </form>
+</div>
+<div class="arrow-down-bottom">
+    <div class="arrow-down-bottom-img"></div>
+</div>
+
+<div id="moreinfo">
+    <div style=" height:100px;" class="steps-numbers">
+        <img style="float:left;" src="/assets/img/circle-1.png" alt="1" />
+        <p class="one">Tell us where you are and where you're heading</p>
+    </div>
+    <div style=" height:100px;"  class="steps-numbers">
+        <img style="float:right;" src="/assets/img/circle-2.png" alt="2" />
+        <p class="two">    We'll pit local hotel deals against your taxi fare to find the best option</p>
+    </div>
+    <div style=" height:100px;"  class="steps-numbers">
+        <img style="float:left;" src="/assets/img/circle-3.png" alt="3" />
+        <p class="two">  Hotel or taxi – book whichever you choose </p>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Randomly generate pics -->
+    <script type="text/javascript" src="/assets/js/location.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        var rand_no = Math.floor((13-1)*Math.random()) + 1;
+        var className = 'photo-set' + rand_no;
+        $("#headerIMG").addClass(className);
+    });
+    </script>
+}
+
+@section MetaTags{
+    <meta name="description" content="Should I stay or should I go now? Hotel vs Taxi is an all-in-one taxi fare calculator + cab + hotel finder. Why stop the Fun? Live your life Now!">
+}
+
+@section Title{
+    <title>Taxi Fare Calculator, Cab &amp; hotel finder | Hotel vs Taxi</title>
+}

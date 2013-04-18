@@ -43,6 +43,7 @@
     <Compile Include="Longitude.cs" />
     <Compile Include="Metres.cs" />
     <Compile Include="Passengers.cs" />
+    <Compile Include="Polygon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartingPoint.cs" />
   </ItemGroup>

@@ -17,14 +17,16 @@
         var place = autocompleteFrom.getPlace();
 
         $('#from').val(place.name);
-        $('#fromlatlong').val(place.geometry.location.lat() + ',' + place.geometry.location.lng());
+        $('#fromlat').val(place.geometry.location.lat());
+        $('#fromlong').val(place.geometry.location.lng());
     });
     
     google.maps.event.addListener(autocompleteTo, 'place_changed', function () {
         var place = autocompleteTo.getPlace();
 
         $('#to').val(place.name);
-        $('#tolatlong').val(place.geometry.location.lat() + ',' + place.geometry.location.lng());
+        $('#tolat').val(place.geometry.location.lat());
+        $('#tolong').val(place.geometry.location.lng());
     });
 }
 google.maps.event.addDomListener(window, 'load', initialize);

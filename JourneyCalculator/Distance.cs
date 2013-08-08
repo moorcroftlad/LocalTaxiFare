@@ -1,4 +1,4 @@
-namespace JourneyCalculator
+﻿namespace JourneyCalculator
 {
     public class Distance
     {

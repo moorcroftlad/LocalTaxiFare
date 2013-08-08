@@ -11,7 +11,8 @@ function bindChangeClick(searchBoxHolder, fromEle) {
     $('#change-location').click(function () {
         toggleView(searchBoxHolder, fromEle, 'From (postcode, street, etc.)');
         fromEle.removeAttr('disabled');
-        $('#fromlatlong').val('');
+        $('#fromlat').val('');
+        $('#fromlong').val('');
     });
 }
 
@@ -39,7 +40,8 @@ function toggleView(searchBoxHolder, fromEle, placeholderText) {
 }
 
 function bindLatLong(position) {
-    $('#fromlatlong').val(position.coords.latitude + ',' + position.coords.longitude);
+    $('#fromlat').val(position.coords.latitude);
+    $('#fromlong').val(position.coords.longitude);
 }
 
 function errorFunction(position) {
@@ -48,9 +50,11 @@ function errorFunction(position) {
 
 function attachValidation() {
     $('#fight-button').click(function (e) {
-        var from = $('#fromlatlong').val(),
-            to = $('#tolatlong').val();
-        if (from.length === 0 || to.length === 0) {
+        var fromLat = $('#fromlat').val(),
+            fromLong = $('#fromlong').val(),
+            toLat = $('#tolat').val(),
+            toLong = $('#tolong').val();
+        if (fromLat.length === 0 || fromLong.length === 0 || toLat.length === 0 || toLong.length === 0) {
             e.preventDefault();
             alert('Please enter your current destination and desired location');
         }

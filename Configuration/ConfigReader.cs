@@ -2,6 +2,13 @@ using System.Configuration;
 
 namespace Configuration
 {
+    public interface ICanReadConfigurations
+    {
+        string TaxiApiUrl();
+        string TaxiApiKey();
+        string GooglePlacesApiKey();
+    }
+
     public class ConfigReader : ICanReadConfigurations
     {
         public string TaxiApiUrl()

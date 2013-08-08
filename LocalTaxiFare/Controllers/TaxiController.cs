@@ -1,24 +1,37 @@
 ﻿using System.Web.Mvc;
-using Geography;
+using Results;
+using TaxiFirmDetails;
+using JourneyCalculator;
+using LocalTaxiFare.Models;
 
 namespace LocalTaxiFare.Controllers
 {
     public class TaxiController : Controller
     {
-        private readonly ICreateTaxiViewModels _taxiViewModelFactory;
+        private readonly ICalculateTheTaxiFare _taxiFareCalculator;
+        private readonly ITaxiFirmFactory _taxiFirmFactory;
+        private readonly ICanGetTheDistanceOfATaxiJourneyBetweenPoints _distanceCalculator;
 
-        public TaxiController(ICreateTaxiViewModels taxiViewModelFactory)
+        public TaxiController(ICalculateTheTaxiFare taxiFareCalculator, ITaxiFirmFactory taxiFirmFactory, ICanGetTheDistanceOfATaxiJourneyBetweenPoints distanceCalculator)
         {
-            _taxiViewModelFactory = taxiViewModelFactory;
+            _taxiFareCalculator = taxiFareCalculator;
+            _taxiFirmFactory = taxiFirmFactory;
+            _distanceCalculator = distanceCalculator;
         }
 
-        public ViewResult Index(string latitude, string longitude)
+        public ViewResult Index(string fromLat, string fromLong, string toLat, string toLong)
         {
-            var latitude1 = new Latitude(latitude);
-            var longitude1 = new Longitude(longitude);
-            var location = new Location(latitude1, longitude1);
-            var taxisViewModel = _taxiViewModelFactory.Create(location);
-            return View("Index", taxisViewModel);
+            var fromLatLong = fromLat + "," + fromLong;
+            var toLatLong = toLat + "," + toLong;
+            var distance = _distanceCalculator.Calculate(fromLatLong, toLatLong);
+            var taxiPrice = _taxiFareCalculator.GetTaxiPrice(fromLatLong, distance);
+            var taxis = _taxiFirmFactory.Create(fromLatLong);
+            var viewModel = new TaxisViewModel
+            {
+                TaxiFirms = taxis,
+                AveragePrice = (decimal)taxiPrice
+            };
+            return View("Index", viewModel);
         }
     }
 }

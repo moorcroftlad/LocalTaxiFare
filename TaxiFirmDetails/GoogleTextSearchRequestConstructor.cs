@@ -1,13 +1,12 @@
 using System;
 using Configuration;
-using Geography;
 using WebResponse;
 
 namespace TaxiFirmDetails
 {
     public interface IConstructGoogleTextSearchRequests
     {
-        string GetTextSearchRequests(Location location);
+        string GetTextSearchRequests(string latlong);
     }
 
     public class GoogleTextSearchRequestConstructor : IConstructGoogleTextSearchRequests
@@ -21,10 +20,10 @@ namespace TaxiFirmDetails
             _webClientWrapper = webClientWrapper;
         }
 
-        public string GetTextSearchRequests(Location geoLocation)
+        public string GetTextSearchRequests(string latLong)
         {
             string baseUri = "https://maps.googleapis.com/maps/api/place/textsearch/json";
-            string location = "location=" + geoLocation;
+            string location = "location=" + latLong;
             string key = "key=" + _configReader.GooglePlacesApiKey();
             string radius = "radius=100";
             string query = "query=taxi";

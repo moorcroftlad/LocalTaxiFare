@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Geography;
 using WebResponse;
 
 namespace JourneyCalculator
 {
     public interface IGetTheResponseFromGoogleMapsDirectionsApi
     {
-        string Generate(StartingPoint origin, Destination destination);
+        string Generate(string from, string to);
     }
 
     /// <summary>
@@ -32,17 +31,12 @@ namespace JourneyCalculator
             _webResponseDownloader = new WebClientWrapper();
         }
 
-        public string Generate(StartingPoint origin, Destination destination)
+        public string Generate(string from, string to)
         {
             string baseUri = "http://maps.googleapis.com/maps/api/directions/";
-
-            string searchTerm = origin.Location.SearchTerm;
-
-            string term = destination.Location.SearchTerm;
-
             string address = String.Format("{0}json?origin={1}&destination={2}&sensor=false", baseUri,
-                                           searchTerm,
-                                           term);
+                                           from,
+                                           to);
 
             return _webResponseDownloader.Get(address);
         }

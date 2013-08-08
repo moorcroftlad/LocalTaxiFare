@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using Geography;
 using Newtonsoft.Json;
 
 namespace TaxiFirmDetails
 {
     public interface ITaxiFirmFactory
     {
-        List<TaxiFirm> Create(Location location);
+        List<TaxiFirm> Create(string latlong);
     }
 
     public class TaxiFirmFactory : ITaxiFirmFactory
@@ -21,11 +20,11 @@ namespace TaxiFirmDetails
             _googlePlaceRequestConstructor = googlePlaceRequestConstructor;
         }
 
-        public List<TaxiFirm> Create(Location location)
+        public List<TaxiFirm> Create(string latlong)
         {
-            string response = _googleTextSearchRequestConstructor.GetTextSearchRequests(location);
+            var localTaxis = _googleTextSearchRequestConstructor.GetTextSearchRequests(latlong);
 
-            var places = JsonConvert.DeserializeObject<GooglePlaces>(response);
+            var places = JsonConvert.DeserializeObject<GooglePlaces>(localTaxis);
 
             var taxiFirms = new List<TaxiFirm>();
 

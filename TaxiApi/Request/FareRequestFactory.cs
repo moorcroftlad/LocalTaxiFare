@@ -7,7 +7,7 @@ namespace TaxiApi.Request
 {
     public interface ICreateRequests
     {
-        string Create(DateTime date, Journey journey);
+        string Create(DateTime date, string distance, string fromLatLong);
     }
 
     public class FareRequestFactory : ICreateRequests
@@ -24,7 +24,7 @@ namespace TaxiApi.Request
             _canReadConfigurations = new ConfigReader();
         }
 
-        public string Create(DateTime date, Journey journey)
+        public string Create(DateTime date, string distance, string fromLatLong)
         {
             var request = new StringBuilder();
 
@@ -38,8 +38,8 @@ namespace TaxiApi.Request
             request.Append(string.Format("&day={0}", date.Day));
             request.Append(string.Format("&hour={0}", date.Hour));
             request.Append(string.Format("&minute={0}", date.Minute));
-            request.Append(string.Format("&distance={0}", journey.Distance));
-            request.Append(string.Format("&from={0}", journey.StartingPoint));
+            request.Append(string.Format("&distance={0}", distance));
+            request.Append(string.Format("&from={0}", fromLatLong));
 
             return request.ToString();
         }

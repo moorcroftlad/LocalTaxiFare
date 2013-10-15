@@ -9,13 +9,13 @@ namespace LocalTaxiFare.Controllers
     public class TaxiController : Controller
     {
         private readonly ICalculateTheTaxiFare _taxiFareCalculator;
-        private readonly ITaxiFirmFactory _taxiFirmFactory;
-        private readonly ICanGetTheDistanceOfATaxiJourneyBetweenPoints _distanceCalculator;
+        private readonly IRetrieveTaxiFirms _retrieveTaxiFirms;
+        private readonly ICalculateDistanceBetweenLatLong _distanceCalculator;
 
-        public TaxiController(ICalculateTheTaxiFare taxiFareCalculator, ITaxiFirmFactory taxiFirmFactory, ICanGetTheDistanceOfATaxiJourneyBetweenPoints distanceCalculator)
+        public TaxiController(ICalculateTheTaxiFare taxiFareCalculator, IRetrieveTaxiFirms retrieveTaxiFirms, ICalculateDistanceBetweenLatLong distanceCalculator)
         {
             _taxiFareCalculator = taxiFareCalculator;
-            _taxiFirmFactory = taxiFirmFactory;
+            _retrieveTaxiFirms = retrieveTaxiFirms;
             _distanceCalculator = distanceCalculator;
         }
 
@@ -25,7 +25,7 @@ namespace LocalTaxiFare.Controllers
             var toLatLong = toLat + "," + toLong;
             var distance = _distanceCalculator.Calculate(fromLatLong, toLatLong);
             var taxiPrice = _taxiFareCalculator.GetTaxiPrice(distance, fromLatLong);
-            var taxis = _taxiFirmFactory.Create(fromLatLong);
+            var taxis = _retrieveTaxiFirms.Create(fromLatLong);
             var viewModel = new TaxisViewModel
             {
                 TaxiFirms = taxis,

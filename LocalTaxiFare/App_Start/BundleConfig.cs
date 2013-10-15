@@ -13,8 +13,6 @@ namespace LocalTaxiFare.App_Start
                 "~/assets/js/searchForm.js"));
             bundles.Add(new StyleBundle("~/bundles/css").Include(
                 "~/assets/css/bootstrap-responsive.css",
-                "~/assets/css/style.css",
-                "~/assets/css/style-2.css",
                 "~/assets/css/style-3.css",
                 "~/assets/css/add2home.css"));
         }

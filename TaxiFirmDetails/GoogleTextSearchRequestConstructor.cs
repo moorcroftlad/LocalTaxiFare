@@ -11,10 +11,10 @@ namespace TaxiFirmDetails
 
     public class GoogleTextSearchRequestConstructor : IConstructGoogleTextSearchRequests
     {
-        private readonly ICanReadConfigurations _configReader;
+        private readonly IReadConfiguration _configReader;
         private readonly IDownloadResponses _webClientWrapper;
 
-        public GoogleTextSearchRequestConstructor(ICanReadConfigurations configReader, IDownloadResponses webClientWrapper)
+        public GoogleTextSearchRequestConstructor(IReadConfiguration configReader, IDownloadResponses webClientWrapper)
         {
             _configReader = configReader;
             _webClientWrapper = webClientWrapper;

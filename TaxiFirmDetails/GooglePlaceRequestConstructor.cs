@@ -11,10 +11,10 @@ namespace TaxiFirmDetails
 
     public class GooglePlaceRequestConstructor : IConstructGooglePlaceRequests
     {
-        private readonly ICanReadConfigurations _configReader;
+        private readonly IReadConfiguration _configReader;
         private readonly IDownloadResponses _webClientWrapper;
 
-        public GooglePlaceRequestConstructor(ICanReadConfigurations configReader, IDownloadResponses webClientWrapper)
+        public GooglePlaceRequestConstructor(IReadConfiguration configReader, IDownloadResponses webClientWrapper)
         {
             _webClientWrapper = webClientWrapper;
             _configReader = configReader;

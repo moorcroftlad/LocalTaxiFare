@@ -1,8 +1,11 @@
-using System;
-
 namespace JourneyCalculator
 {
-    public class DistanceCalculator : ICanGetTheDistanceOfATaxiJourneyBetweenPoints
+    public interface ICalculateDistanceBetweenLatLong
+    {
+        string Calculate(string from, string to);
+    }
+
+    public class DistanceCalculator : ICalculateDistanceBetweenLatLong
     {
         private readonly IGetTheResponseFromGoogleMapsDirectionsApi _googleMapsDirectionsResponse;
         private readonly IDeserialiseGoogleMapsDirectionsResponses _googleMapsApiDeserialiser;
@@ -28,11 +31,19 @@ namespace JourneyCalculator
 
         private static string DistanceInMetres(DirectionsResponse directionsResponse)
         {
-            Routes firstRoute = directionsResponse.Routes[0];
-            Legs firstLeg = firstRoute.Legs[0];
-            Distance legDistance = firstLeg.Distance;
-            string distanceInMetres = legDistance.Value;
+            var firstRoute = directionsResponse.Routes[0];
+            var firstLeg = firstRoute.Legs[0];
+            var legDistance = firstLeg.Distance;
+            var distanceInMetres = legDistance.Value;
             return distanceInMetres;
+        }
+    }
+
+    public class FakeDistanceCalculator : ICalculateDistanceBetweenLatLong
+    {
+        public string Calculate(string @from, string to)
+        {
+            return "500";
         }
     }
 }

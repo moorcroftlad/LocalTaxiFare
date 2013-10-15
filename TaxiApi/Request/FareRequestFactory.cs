@@ -1,34 +1,33 @@
 using System;
 using System.Text;
 using Configuration;
-using JourneyCalculator;
 
 namespace TaxiApi.Request
 {
-    public interface ICreateRequests
+    public interface ICreateTaxiFareRequests
     {
         string Create(DateTime date, string distance, string fromLatLong);
     }
 
-    public class FareRequestFactory : ICreateRequests
+    public class TaxiFareRequest : ICreateTaxiFareRequests
     {
-        private readonly ICanReadConfigurations _canReadConfigurations;
+        private readonly IReadConfiguration _readConfiguration;
 
-        public FareRequestFactory(ICanReadConfigurations canReadConfigurations)
+        public TaxiFareRequest(IReadConfiguration readConfiguration)
         {
-            _canReadConfigurations = canReadConfigurations;
+            _readConfiguration = readConfiguration;
         }
 
-        public FareRequestFactory()
+        public TaxiFareRequest()
         {
-            _canReadConfigurations = new ConfigReader();
+            _readConfiguration = new ConfigReader();
         }
 
         public string Create(DateTime date, string distance, string fromLatLong)
         {
             var request = new StringBuilder();
 
-            request.Append(string.Format("?key={0}", _canReadConfigurations.TaxiApiKey()));
+            request.Append(string.Format("?key={0}", _readConfiguration.TaxiApiKey()));
             request.Append("&return=json");
             request.Append("&type=fare");
             request.Append("&passengers=1");

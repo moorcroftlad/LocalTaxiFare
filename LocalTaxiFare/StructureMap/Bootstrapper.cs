@@ -14,21 +14,32 @@ namespace LocalTaxiFare.StructureMap
     {
         public static void Run()
         {
-            ControllerBuilder.Current.SetControllerFactory(new ControllerFactory());
+            var controllerFactory = new ControllerFactory();
+            var configReader = new ConfigReader();
+            ControllerBuilder.Current.SetControllerFactory(controllerFactory);
             ObjectFactory.Initialize(expression =>
                 {
-                    expression.For<ICanReadConfigurations>().Use<ConfigReader>();
+                    expression.For<IReadConfiguration>().Use<ConfigReader>();
                     expression.For<IDownloadResponses>().Use<WebClientWrapper>();
                     expression.For<IPerformApiRequest>().Use<WebClientApiRequest>();
-                    expression.For<ICreateRequests>().Use<FareRequestFactory>();
-                    expression.For<ICreateResponses>().Use<FareResponseFactory>();
+                    expression.For<ICreateTaxiFareRequests>().Use<TaxiFareRequest>();
                     expression.For<IGetTheResponseFromGoogleMapsDirectionsApi>().Use<GoogleMapsDirectionsResponse>();
                     expression.For<IDeserialiseGoogleMapsDirectionsResponses>().Use<GoogleMapsApiDeserialiser>();
-                    expression.For<ICanGetTheDistanceOfATaxiJourneyBetweenPoints>().Use<DistanceCalculator>();
                     expression.For<IConstructGoogleTextSearchRequests>().Use<GoogleTextSearchRequestConstructor>();
                     expression.For<IConstructGooglePlaceRequests>().Use<GooglePlaceRequestConstructor>();
-                    expression.For<ICalculateTheTaxiFare>().Use<TaxiFareCalculator>();
-                    expression.For<ITaxiFirmFactory>().Use<TaxiFirmFactory>();
+                    
+                    if (configReader.CallLiveApi())
+                    {
+                        expression.For<ICalculateTheTaxiFare>().Use<TaxiFareCalculator>();
+                        expression.For<IRetrieveTaxiFirms>().Use<TaxiFirmRetriever>();
+                        expression.For<ICalculateDistanceBetweenLatLong>().Use<DistanceCalculator>();   
+                    }
+                    else
+                    {
+                        expression.For<ICalculateTheTaxiFare>().Use<FakeTaxiFareCalculator>();
+                        expression.For<IRetrieveTaxiFirms>().Use<FakeTaxiFirmRetriever>();
+                        expression.For<ICalculateDistanceBetweenLatLong>().Use<FakeDistanceCalculator>();   
+                    }
                 });
         }
     }

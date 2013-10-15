@@ -1,110 +1,93 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-      @if (IsSectionDefined("Title"))
-      {
-          @RenderSection("Title", required:false)
-      }
-      else
-      {
-          <title>Local Taxi Finder</title>
-      }
-    @RenderSection("MetaTags", required: false)
-    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
-    <link href="/assets/css/bootstrap.css" rel="stylesheet">
-    <link href="/assets/css/bootstrap-overide.css" rel="stylesheet">
-    <link rel="apple-touch-icon" href="/assets/img/icon-app.png"/>
-    <link rel="apple-touch-startup-image" href="/assets/img/startscreen.png" />
-    <link rel="icon" href="/favicon.ico">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-
-      .footer {
-          line-height:60px; 
-          font-weight:700; 
-          height:0; 
-          border-top:1px dotted #999999; 
-          color:#999999; 
-          text-align:center;
-      }
-    </style>
-    @Styles.Render("~/bundles/css")
-    @RenderSection("styles", required: false)
-    <script type="text/javascript" src="/assets/js/add2home.js"></script>
-    <script type="text/javascript">
-
-        function stopRKey(evt) {
-            var evt = (evt) ? evt : ((event) ? event : null);
-            var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
-            if ((evt.keyCode == 13) && (node.type == "text")) { return false; }
+    <head>
+        <meta charset="utf-8">
+        @if (IsSectionDefined("Title"))
+        {
+            @RenderSection("Title", required:false)
         }
+        else
+        {
+            <title>Local Taxi Finder</title>
+        }
+        @RenderSection("MetaTags", required: false)
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
+        <link href="/assets/css/bootstrap.css" rel="stylesheet" />
+        <link href="/assets/img/icon-app.png" rel="apple-touch-icon" />
+        <link href="/assets/img/startscreen.png" rel="apple-touch-startup-image" />
+        <link href="/favicon.ico" rel="icon">
+        <style type="text/css">
+            body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
 
-        document.onkeypress = stopRKey;
+            .footer {
+                line-height:60px; 
+                font-weight:700; 
+                height:0; 
+                border-top:1px dotted #999999; 
+                color:#999999; 
+                text-align:center;
+            }
+        </style>
+        @Styles.Render("~/bundles/css")
+        @RenderSection("styles", false)
+        <script type="text/javascript">
 
-    </script>
-  </head>
+            function stopRKey(evt) {
+                var evt = (evt) ? evt : ((event) ? event : null);
+                var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+                if ((evt.keyCode == 13) && (node.type == "text")) { return false; }
+            }
 
-  <body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-                <li class="active"><a href="/">Search</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-        <div id="sublogo">
-            
-		</div>
-        @RenderBody()
-
-        <footer>
-            <div class="row">
-                <p class="footer">
-                    &copy; Local Taxi Fare @DateTime.Now.Year 
-                    <br />
-                    <a href="http://yourtaximeter.com/" rel="nofollow" target="_blank">
-                        <img src ="http://yourtaximeter.com/images/press/thumbnail/powered_by_red_thumb.png"/>
-                    </a>
-                </p>
-
-            </div>
-        </footer>
-
-    </div>
-    
-      <script src="http://maps.google.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script> 
-      <script>
-          (function (i, s, o, g, r, a, m) {
-              i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                  (i[r].q = i[r].q || []).push(arguments)
-              }, i[r].l = 1 * new Date(); a = s.createElement(o),
-              m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-          ga('create', 'UA-39862552-1', 'www.hotelvstaxi.com');
-          ga('send', 'pageview');
+            document.onkeypress = stopRKey;
 
         </script>
+    </head>
 
-      @Scripts.Render("~/bundles/js")
-    @RenderSection("scripts", required: false)
-  </body>
+    <body>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="active"><a href="/">Search</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            @RenderBody()
+
+            <footer>
+                <div class="row">
+                    <p class="footer">
+                        &copy; Local Taxi Fare @DateTime.Now.Year 
+                        <br />
+                        <a href="http://yourtaximeter.com/" rel="nofollow" target="_blank">
+                            <img src ="http://yourtaximeter.com/images/press/thumbnail/powered_by_red_thumb.png"/>
+                        </a>
+                    </p>
+
+                </div>
+            </footer>
+
+        </div>
+    
+        <script src="http://maps.google.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script> 
+
+        @Scripts.Render("~/bundles/js")
+        @RenderSection("scripts", required: false)
+    </body>
 </html>

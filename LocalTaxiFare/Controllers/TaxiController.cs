@@ -24,7 +24,7 @@ namespace LocalTaxiFare.Controllers
             var fromLatLong = fromLat + "," + fromLong;
             var toLatLong = toLat + "," + toLong;
             var distance = _distanceCalculator.Calculate(fromLatLong, toLatLong);
-            var taxiPrice = _taxiFareCalculator.GetTaxiPrice(fromLatLong, distance);
+            var taxiPrice = _taxiFareCalculator.GetTaxiPrice(distance, fromLatLong);
             var taxis = _taxiFirmFactory.Create(fromLatLong);
             var viewModel = new TaxisViewModel
             {

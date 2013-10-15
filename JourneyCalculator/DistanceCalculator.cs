@@ -6,14 +6,11 @@ namespace JourneyCalculator
     {
         private readonly IGetTheResponseFromGoogleMapsDirectionsApi _googleMapsDirectionsResponse;
         private readonly IDeserialiseGoogleMapsDirectionsResponses _googleMapsApiDeserialiser;
-        private readonly ISpecifyConditionsOfNoTaxiRoutesFound _specifyConditionsOfNoTaxiRoutesFound;
 
-        public DistanceCalculator(IGetTheResponseFromGoogleMapsDirectionsApi googleMapsDirectionsResponse,
-                                  IDeserialiseGoogleMapsDirectionsResponses googleMapsApiDeserialiser, ISpecifyConditionsOfNoTaxiRoutesFound noTaxiRoutesSpecification)
+        public DistanceCalculator(IGetTheResponseFromGoogleMapsDirectionsApi googleMapsDirectionsResponse, IDeserialiseGoogleMapsDirectionsResponses googleMapsApiDeserialiser)
         {
             _googleMapsDirectionsResponse = googleMapsDirectionsResponse;
             _googleMapsApiDeserialiser = googleMapsApiDeserialiser;
-            _specifyConditionsOfNoTaxiRoutesFound = noTaxiRoutesSpecification;
         }
 
         public DistanceCalculator()
@@ -24,11 +21,8 @@ namespace JourneyCalculator
 
         public string Calculate(string from, string to)
         {
-            string response = _googleMapsDirectionsResponse.Generate(from, to);
-
-            DirectionsResponse googleMapsDirections =
-                _googleMapsApiDeserialiser.DeserializeResponse(response);
-
+            var response = _googleMapsDirectionsResponse.Generate(from, to);
+            var googleMapsDirections = _googleMapsApiDeserialiser.DeserializeResponse(response);
             return DistanceInMetres(googleMapsDirections);
         }
 

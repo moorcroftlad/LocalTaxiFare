@@ -33,11 +33,8 @@ namespace JourneyCalculator
 
         public string Generate(string from, string to)
         {
-            string baseUri = "http://maps.googleapis.com/maps/api/directions/";
-            string address = String.Format("{0}json?origin={1}&destination={2}&sensor=false", baseUri,
-                                           from,
-                                           to);
-
+            const string baseUri = "http://maps.googleapis.com/maps/api/directions/";
+            var address = String.Format("{0}json?origin={1}&destination={2}&sensor=false", baseUri, from, to);
             return _webResponseDownloader.Get(address);
         }
     }

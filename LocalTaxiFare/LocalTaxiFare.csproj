@@ -199,9 +199,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Hotel\Index.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
-    <Content Include="Views\Results\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Taxi\Index.cshtml" />
@@ -210,9 +208,6 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Results\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Configuration\Configuration.csproj">
